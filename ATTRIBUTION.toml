@@ -2188,7 +2188,7 @@ source = "https://design.ubuntu.com/font"
 licence = "Ubuntu-font-1.0"
 kind = "font"
 usage = "egui fallback fonts (eframe feature default_fonts)"
-sha256 = "8e705c5cde6a3ef778e8aca69759e38845b228b3f7f12949e587b19855d2114c"
+sha256 = "80307b8da7649aa4ee4d484b232140e3ce1ec0ca093073d3c53c8f5a5ced7a70"
 
 [[bundled]]
 crate = "epaint_default_fonts"
@@ -2200,7 +2200,7 @@ source = "https://github.com/source-foundry/Hack"
 licence = "MIT AND Bitstream-Vera"
 kind = "font"
 usage = "egui fallback fonts (eframe feature default_fonts)"
-sha256 = "8e705c5cde6a3ef778e8aca69759e38845b228b3f7f12949e587b19855d2114c"
+sha256 = "15f55cc0c85a2988d2b4b3a8cdb5d77fdfbaf319e1bb5309d725db9818fb7125"
 
 [[bundled]]
 crate = "epaint_default_fonts"
@@ -2212,7 +2212,7 @@ source = "https://github.com/googlefonts/noto-emoji"
 licence = "OFL-1.1"
 kind = "font"
 usage = "egui monochrome fallback font (egui feature monochrome_emoji_fonts)"
-sha256 = "8e705c5cde6a3ef778e8aca69759e38845b228b3f7f12949e587b19855d2114c"
+sha256 = "415dc6290378574135b64c808dc640c1df7531973290c4970c51fdeb849cb0c5"
 
 [[bundled]]
 crate = "epaint_default_fonts"
@@ -2224,7 +2224,7 @@ source = "https://github.com/jslegers/emoji-icon-font"
 licence = "MIT"
 kind = "font"
 usage = "egui monochrome fallback font (egui feature monochrome_emoji_fonts)"
-sha256 = "8e705c5cde6a3ef778e8aca69759e38845b228b3f7f12949e587b19855d2114c"
+sha256 = "f426bec371f484646d002717e2c555a95cd5145e635d83a48bbef83f3abf18ca"
 
 [[bundled]]
 crate = "epaint_default_fonts"
@@ -2236,7 +2236,7 @@ source = "https://github.com/jslegers/emoji-icon-font"
 licence = "MIT"
 kind = "font"
 usage = "Small special-icon subset embedded by egui default_fonts; retained in FontDefinitions::default(). Provenance: https://github.com/storytold/egui/blob/6d518fc799681571963842f95b55a6b68431b15a/crates/epaint_default_fonts/fonts/egui-icons.txt; complete MIT copyright and permission text in NOTICE."
-sha256 = "8e705c5cde6a3ef778e8aca69759e38845b228b3f7f12949e587b19855d2114c"
+sha256 = "122806555c73df7cef55aa1d945289ae27fbc4dbbd31abbb4204ee0cda829cc8"
 
 [[asset]]
 path = "vendor/hayro-cmap/assets/cmaps.brotli"
@@ -2261,7 +2261,7 @@ licence = "MIT OR Apache-2.0"
 kind = "data"
 adobe_data = true
 usage = "Glyph widths and encodings for non-embedded standard fonts. Non-visual data, allowed by AGENTS.md §1.1"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "2ec9e608573eda459de1e1d9bda3bb494315e36bee885acc88912a11fe0caa41"
 
 [[fetched]]
 file = "PlayfairDisplay[wght].ttf"
@@ -2274,7 +2274,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6"
 
 [[fetched]]
 file = "PlayfairDisplay-Italic[wght].ttf"
@@ -2287,7 +2287,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "a5e26dc5e2e77fb2803a0bf02fd4f81ee136ec8dea863ccdb0c59a263b21378b"
 
 [[fetched]]
 file = "EBGaramond[wght].ttf"
@@ -2300,7 +2300,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "0985066662eb755ed3683ae5482a81a9195b49ce3f7e165cc2388b3dbece7dd7"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "ef9512f92f6d579e5dc75af59a5a4b1b8b47d2eda89e00b954d44520e5369027"
 
 [[fetched]]
 file = "EBGaramond-Italic[wght].ttf"
@@ -2313,7 +2313,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "0985066662eb755ed3683ae5482a81a9195b49ce3f7e165cc2388b3dbece7dd7"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "bba2c4499c93c9612b90b9825d32b07da52fce2fe57562a1eb6b833553f93c4e"
 
 [[fetched]]
 file = "GreatVibes-Regular.ttf"
@@ -2326,7 +2326,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "61093a21f5e63dedf54222b3c09997e54c0fe43e3851d21386e02ddcbc246d49"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "8d509802186f1b51572531ecf313e8098f9a5bfdfaca93f0c9b34467f9982d15"
 
 [[fetched]]
 file = "STIXTwoMath-Regular.ttf"
@@ -2339,7 +2339,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "562551b15b836e6e01d1b7350909baf3c8c8d83260c1190fbf4544333e6936de"
 
 [[fetched]]
 file = "Amiri-Regular.ttf"
@@ -2352,7 +2352,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "ab391c4147d054c48976e98322ad0eefe1427aa0e0502a12a4c75d80a70cfcd7"
 
 [[fetched]]
 file = "NotoSansHebrew[wdth,wght].ttf"
@@ -2365,7 +2365,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "9b9fe028b5ba74d231659a1bbaf0ed09b11e759d1ca6a070999e16d151616b47"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "7ef36a2c3593758cdb622e1bdef4f84523e92fbc3ccc667438dd80ff54c2de88"
 
 [[fetched]]
 file = "NotoSansDevanagari[wdth,wght].ttf"
@@ -2378,7 +2378,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "a216f6f8d85c7228093e0ee5e258d9d377e6671f68acb4db1930b29583d0f331"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "14ec4af41f27482216d1c2229f417ff9b1425e1babb014e57d1d40d03229853e"
 
 [[fetched]]
 file = "NotoSansThai[wdth,wght].ttf"
@@ -2391,7 +2391,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "2e98fd23a52d253db8612cd5942c8f2ff4111b21d2367050fdca91d8ccc374a0"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "5a1c559bb539583c8a1fd99d1c5b9491e5e14478c9cd2bd0970d5c3096cc9ef8"
 
 [[fetched]]
 file = "NotoSansArmenian[wdth,wght].ttf"
@@ -2404,7 +2404,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "0468358b316f69f405b55cadf8a8314e16e3610b8feaad96772bd5d968112d02"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "0870908d8318435a5daf1cd280ae15063f990cd9ad60f3e94c734ce9e1ffef71"
 
 [[fetched]]
 file = "NotoSansGeorgian[wdth,wght].ttf"
@@ -2417,7 +2417,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "8c02263c5d73d40544f9ed91e30c4e947407057a3cc430d7b786189aeceff6df"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "dc591156f36842d38996c4a7a17fee9bb58e45da3e2cac7a31b7d33de700adb9"
 
 [[fetched]]
 file = "NotoSansTamil[wdth,wght].ttf"
@@ -2430,7 +2430,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "f8ff8ce7d0a81bf8d5e121c635ef027250c531f2fd37d5988b8dd6e45f19d7f1"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "aa3a9b321f4b0bb2c40203ffbde9af89713227866e0e13f76e5b9eeea727cf88"
 
 [[fetched]]
 file = "CharisSIL-Regular.ttf"
@@ -2443,7 +2443,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "0acda775b4dedaf980821f590206a692779ee495170018ee2b9caf1c50fc136a"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "346337374aa347d64ee015b26d441f1970d8631914e2f3941b00e1c4761e28c5"
 
 [[fetched]]
 file = "ZCOOLXiaoWei-Regular.ttf"
@@ -2456,7 +2456,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1"
 
 [[fetched]]
 file = "ShipporiMincho-Regular.ttf"
@@ -2469,7 +2469,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "41fba056279be5f45ff9a99e44b7b53897b42732f5806d8e666e0ab49ac6bd38"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "769b5269f0f9bc6534b352c0e6bd856a566e03ff788f107191c2d835863570b2"
 
 [[fetched]]
 file = "GowunBatang-Regular.ttf"
@@ -2482,7 +2482,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "49a57cc769fa9affd6eefb9070a61e3d3f6b757c97cafb15848bc6d1c81acc78"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "466c593e7147412e748af4856d5ad14709b5a860bdf62b9c2546f2c5874e9849"
 
 [[fetched]]
 file = "NotoColorEmoji-Regular.ttf"
@@ -2495,7 +2495,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "ac564676d10054a8445923dfc2dfb13c042d97888bd27c1b6ec6dfe89a9d8d62"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "4d82a18d8d95f60ba883ce242bbadbf84a576e987745dd7ba38d71c67cff2d73"
 
 [[fetched]]
 file = "Inter[opsz,wght].ttf"
@@ -2508,7 +2508,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
 
 [[fetched]]
 file = "Inter-Italic[opsz,wght].ttf"
@@ -2521,7 +2521,7 @@ licence_url = "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be2725
 licence_sha256 = "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
 kind = "font"
 usage = "Showcase PDF (cargo xtask demo-pdf)"
-sha256 = "ddf37af521d904d5646c2fc37b2b7e912dc1b56f0d210190b61f598154758e46"
+sha256 = "acd98e64795781b2058f07b18475e0ecee2a0fe2b42a49e2f9e37d0d6bf66ce6"
 
 [[asset]]
 path = "assets/app-icon/pdfcraft.svg"
@@ -3012,33 +3012,33 @@ sha256 = "05334b35cdc4386ec1070b347ef735f4b5385f252803e2ddd650266e7eb05c9d"
 file = "text-detection.onnx"
 url = "https://ocrs-models.s3-accelerate.amazonaws.com/text-detection.onnx"
 title = "Ocrs text detection model"
-author = "@XusBadia (layout); Nasser Alqahtani (وثيقة artwork and Arabic text, outlined from Noto Kufi Arabic and Noto Sans Arabic, SIL OFL 1.1)"
+author = "Robert Knight (ocrs-models; trained on HierText, CC-BY-SA-4.0)"
 source = "https://github.com/robertknight/ocrs/blob/0c826441362a701c55560fefc17bf356b6d1037e/ocrs/examples/download-models.sh (author-published ONNX models; model card: https://huggingface.co/robertknight/ocrs/blob/df0edd170279ab971b53e094c627255a87e1a503/README.md, cc-by-sa-4.0)"
 licence = "CC-BY-SA-4.0"
 licence_url = "https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt"
 licence_sha256 = "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
 kind = "model"
 usage = "Scan & OCR: finds words on page images (cargo xtask models)"
-sha256 = "05334b35cdc4386ec1070b347ef735f4b5385f252803e2ddd650266e7eb05c9d"
+sha256 = "a917b23dbd9524b465df7e922641b3ff2981623df4ded5a0234004ef2fee7cfe"
 
 [[fetched]]
 file = "text-recognition.onnx"
 url = "https://ocrs-models.s3-accelerate.amazonaws.com/text-recognition.onnx"
 title = "Ocrs text recognition model"
-author = "@XusBadia (layout); Nasser Alqahtani (وثيقة artwork and Arabic text, outlined from Noto Kufi Arabic and Noto Sans Arabic, SIL OFL 1.1)"
+author = "Robert Knight (ocrs-models; trained on HierText, CC-BY-SA-4.0)"
 source = "https://github.com/robertknight/ocrs/blob/0c826441362a701c55560fefc17bf356b6d1037e/ocrs/examples/download-models.sh (author-published ONNX models; model card: https://huggingface.co/robertknight/ocrs/blob/df0edd170279ab971b53e094c627255a87e1a503/README.md, cc-by-sa-4.0)"
 licence = "CC-BY-SA-4.0"
 licence_url = "https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt"
 licence_sha256 = "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
 kind = "model"
 usage = "Scan & OCR: reads the words it finds (cargo xtask models)"
-sha256 = "05334b35cdc4386ec1070b347ef735f4b5385f252803e2ddd650266e7eb05c9d"
+sha256 = "86c145c2edb96c8caed5b1ebb8f44d706408922211451c309c625157dd6061c5"
 
 [[build_input]]
 name = "craft-i18n"
 option = "CRAFT_I18N_DIR"
 title = "Interface translations: the craft-i18n catalogs (locales/<code>/common.tsv and pdfcraft.tsv) of the 34 languages PdfCraft offers besides English"
-author = "@XusBadia (layout); Nasser Alqahtani (وثيقة artwork and Arabic text, outlined from Noto Kufi Arabic and Noto Sans Arabic, SIL OFL 1.1)"
+author = "The craft-i18n translators, including every translator of PdfCraft's former in-repo catalogs (crates/ui-egui/src/i18n/*.tsv, migrated at pdfcraft@ecdd1e6)"
 source = "https://github.com/storytold/craft-i18n (pinned by commit in craft-i18n.rev, which CI, releases and the flatpak manifests read)"
 licence = "MIT OR Apache-2.0"
 attribution = "https://github.com/storytold/craft-i18n/blob/main/ATTRIBUTION.md"
@@ -3049,7 +3049,7 @@ usage = "Interface text in languages other than English, embedded by crates/ui-e
 name = "craft-fonts"
 option = "CRAFT_FONTS_DIR"
 title = "Japanese fonts: BIZ UDPGothic (Regular, Bold), Shippori Mincho, BIZ UDMincho; native Simplified Chinese font: LXGW WenKai Lite; Arabic font: Noto Sans Arabic"
-author = "@XusBadia (layout); Nasser Alqahtani (وثيقة artwork and Arabic text, outlined from Noto Kufi Arabic and Noto Sans Arabic, SIL OFL 1.1)"
+author = "The BIZ UDGothic and BIZ UDMincho Project Authors (Morisawa Inc.), The Shippori Mincho Project Authors (FONTDASU), LXGW and the original Klee Project Authors / Fontworks (LXGW WenKai Lite), The Noto Project Authors (Noto Sans Arabic)"
 source = "https://github.com/storytold/craft-fonts (pinned by commit in .github/workflows/release.yml and .github/workflows/ci.yml); LXGW WenKai Lite from https://github.com/lxgw/LxgwWenKai-Lite/releases/tag/v1.530 (commit b712c83d98acf977bacfb7fb010207802808bda9)"
 licence = "OFL-1.1"
 attribution = "https://github.com/storytold/craft-fonts/blob/main/ATTRIBUTION.md"
