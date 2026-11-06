@@ -428,7 +428,7 @@ pub fn apply(ctx: &egui::Context, kind: ThemeKind) {
     // NSWindow appearance and prevents winit from delivering ThemeChanged.
     // Our saved choice owns the palette; both egui branches receive it below.
     ctx.set_theme(egui::ThemePreference::System);
-    let rtl = crate::i18n::current().rtl();
+    let rtl = crate::i18n::current().rtl() && !crate::mirror::active();
     let t = Tokens::for_kind(kind);
     ctx.data_mut(|d| d.insert_temp(egui::Id::unique("pdfcraft-theme"), t));
     let mut v = if t.dark() { Visuals::dark() } else { Visuals::light() };
@@ -503,7 +503,9 @@ fn direction_key() -> egui::Id {
 /// change as well as at startup. Setting a flag on both concrete themes is cheap; this avoids
 /// rebuilding the whole visuals and font state every frame.
 pub fn sync_direction(ctx: &egui::Context) {
-    let rtl = crate::i18n::current().rtl();
+    // A mirrored interface (Arabic) is laid out left to right and drawn mirrored as a whole, so
+    // egui's own chrome must not be mirrored a second time.
+    let rtl = crate::i18n::current().rtl() && !crate::mirror::active();
     let changed = ctx.data_mut(|d| {
         if d.get_temp::<bool>(direction_key()) == Some(rtl) {
             false

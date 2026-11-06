@@ -42,7 +42,7 @@ impl PdfCraftApp {
         let mark = if dirty { " •" } else { "" };
         let titled = |name: Option<String>| {
             name.or_else(|| self.combine_showing().then(|| tl!("Combine files").to_owned()))
-                .map_or_else(|| "PdfCraft".to_owned(), |name| format!("{name}{mark} — PdfCraft"))
+                .map_or_else(|| crate::i18n::app_name().to_owned(), |name| format!("{name}{mark} — {}", crate::i18n::app_name()))
         };
         let title = titled(self.active.and_then(|i| crate::canvas::tab_label(self, i)));
         // The web page's title is what an embedding host reads to tell which file opened, so it
@@ -273,7 +273,6 @@ impl PdfCraftApp {
             bookmark_rename: None,
             bookmark_clipboard: None,
             last_opened_url: None,
-            community_card_closed: false,
             pending_link: None,
             pending_full_screen: None,
             pending_remote_link: None,
@@ -423,20 +422,9 @@ impl eframe::App for PdfCraftApp {
     /// would keep the place the pointer entered at: tell it where the pointer really is, so the
     /// page grid can show (and use) the gap under it.
     fn raw_input_hook(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
-        // The button's release a window move or resize kept from egui.
-        window_controls::release_after_desktop_grab(ctx, raw);
-        // The wheel after Alt+Tab back, before the mouse has moved (#1518).
-        let known = ctx.input(|i| i.pointer.latest_pos().is_some());
-        let size = ctx.input(|i| i.viewport().inner_rect).map_or(egui::Vec2::ZERO, |r| r.size());
-        drag_pointer::locate_wheel(raw, known, size, || drag_pointer::in_window(ctx));
-        self.prepare_raw_input(ctx, raw);
-        if raw.hovered_files.is_empty() && raw.dropped_files.is_empty() {
-            return;
-        }
-        if let Some(pos) = drag_pointer::in_window(ctx) {
-            raw.events.push(egui::Event::PointerMoved(pos));
-        }
-        ctx.request_repaint();
+        self.raw_input(ctx, raw);
+        // Last, so every pointer position the hook added is mirrored too.
+        crate::mirror::input(raw);
     }
 
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
@@ -680,6 +668,7 @@ impl eframe::App for PdfCraftApp {
             self.show_progress(&ctx);
             widgets::toast(self, &ctx);
             self.finish_render_frame(&ctx);
+            crate::mirror::output(&ctx);
             if let Some(mut control) = self.control.take() {
                 control.finish_frame(&ctx, self);
                 self.control = Some(control);
@@ -698,6 +687,7 @@ impl eframe::App for PdfCraftApp {
             self.show_progress(&ctx);
             widgets::toast(self, &ctx);
             self.finish_render_frame(&ctx);
+            crate::mirror::output(&ctx);
             if let Some(mut control) = self.control.take() {
                 control.finish_frame(&ctx, self);
                 self.control = Some(control);
@@ -732,10 +722,33 @@ impl eframe::App for PdfCraftApp {
         self.show_progress(&ctx);
         widgets::toast(self, &ctx);
         self.finish_render_frame(&ctx);
+        // The Arabic interface reads from the right: the frame is drawn mirrored.
+        crate::mirror::output(&ctx);
         // Screenshots are issued only after a settled pass that really drew the window.
         if let Some(mut control) = self.control.take() {
             control.finish_frame(&ctx, self);
             self.control = Some(control);
         }
+    }
+}
+
+impl PdfCraftApp {
+    /// The input hook's work before mirroring: while files are dragged over the window the system
+    /// sends no pointer moves, so egui is told where the pointer really is.
+    fn raw_input(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
+        // The button's release a window move or resize kept from egui.
+        window_controls::release_after_desktop_grab(ctx, raw);
+        // The wheel after Alt+Tab back, before the mouse has moved (#1518).
+        let known = ctx.input(|i| i.pointer.latest_pos().is_some());
+        let size = ctx.input(|i| i.viewport().inner_rect).map_or(egui::Vec2::ZERO, |r| r.size());
+        drag_pointer::locate_wheel(raw, known, size, || drag_pointer::in_window(ctx));
+        self.prepare_raw_input(ctx, raw);
+        if raw.hovered_files.is_empty() && raw.dropped_files.is_empty() {
+            return;
+        }
+        if let Some(pos) = drag_pointer::in_window(ctx) {
+            raw.events.push(egui::Event::PointerMoved(pos));
+        }
+        ctx.request_repaint();
     }
 }

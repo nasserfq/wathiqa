@@ -15,8 +15,21 @@
 pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
     icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/ai.storyteller.pdfcraft.png")),
     accent: Some([0xb7, 0x02, 0x28]),
-    ..craft_update::suite::PDFCRAFT
+    developer: "ناصر القحطاني",
+    // Releases `v1.<n>.0` with `wathiqa-<version>-<os>-<arch>` downloads; the binary is `wathiqa`
+    // (`Wathiqa.exe`) and the Mac bundle `وثيقة.app` (ai.storyteller.wathiqa).
+    ..craft_update::app::App::new("wathiqa", APP_NAME, "Arabic PDF reader and editor", "nasserfq/wathiqa")
 };
+
+/// The app's name as its windows, menus and About show it.
+pub const APP_NAME: &str = "وثيقة";
+
+/// The app's name in Latin letters, for an interface that isn't Arabic.
+pub const LATIN_NAME: &str = "Wathiqa";
+
+/// The app's name in folders (settings, recovery, clipboard), file metadata and the Windows
+/// installer: ASCII, and not PdfCraft's, so the two apps can be installed side by side.
+pub const STORAGE_NAME: &str = "Wathiqa";
 
 use crate::control::Host as _;
 
@@ -37,6 +50,7 @@ macro_rules! tl_ctx {
 pub mod canvas;
 mod chrome;
 mod image_engine;
+pub mod mirror;
 pub use combine_grid::ThumbState as CombineThumb;
 pub use combine_ui::{Columns as CombineColumns, CombineView, Lock as CombineLock, SortKey};
 mod commands;
@@ -693,8 +707,6 @@ pub struct PdfCraftApp {
     pub replace_draft: Option<files::ReplaceDraft>,
     /// The last web link the app asked the system to open (tests and automation).
     pub last_opened_url: Option<String>,
-    /// The home screen's community card was closed; it comes back next launch (not remembered).
-    pub community_card_closed: bool,
     /// A document asked to open this address; the user hasn't answered yet (#90, #91).
     pub pending_link: Option<PendingLink>,
     /// A document just opened asks to be shown in Full Screen mode (`/PageMode /FullScreen`):

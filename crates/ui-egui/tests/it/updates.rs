@@ -38,7 +38,7 @@ fn settle(h: &mut Harness<'static, PdfCraftApp>) {
     let deadline = std::time::Instant::now() + std::time::Duration::from_secs(30);
     loop {
         h.run_steps(2);
-        if h.query_by_label_contains("Checking for updates").is_none() {
+        if h.query_by_label_contains("جارٍ البحث عن تحديثات").is_none() {
             break;
         }
         assert!(std::time::Instant::now() < deadline, "timed out waiting for the update check");
@@ -52,11 +52,11 @@ fn a_newer_release_is_offered_for_download() {
     let mut h = harness(Ok(Some("v99.0.0")));
     h.state_mut().execute("help.check_updates");
     settle(&mut h);
-    h.get_by_label_contains("PdfCraft 99.0.0 is available");
-    h.get_by_label("DOWNLOAD");
-    h.get_by_label("LATER").click();
+    h.get_by_label_contains("يتوفر إصدار جديد من وثيقة (99.0.0)");
+    h.get_by_label("تنزيل");
+    h.get_by_label("لاحقًا").click();
     h.run_steps(3);
-    assert!(h.query_by_label_contains("is available").is_none(), "Later closes the dialog");
+    assert!(h.query_by_label_contains("يتوفر إصدار جديد").is_none(), "Later closes the dialog");
 }
 
 #[test]
@@ -64,13 +64,13 @@ fn an_up_to_date_or_failed_check_says_so() {
     let mut h = harness(Ok(None));
     h.state_mut().execute("help.check_updates");
     settle(&mut h);
-    h.get_by_label_contains("is the newest version available");
+    h.get_by_label_contains("لديك أحدث إصدار");
     assert!(h.query_by_label("Download").is_none());
 
     let mut h = harness(Err("couldn't reach GitHub"));
     h.state_mut().execute("help.check_updates");
     settle(&mut h);
-    h.get_by_label_contains("Could not check for updates.");
+    h.get_by_label_contains("تعذّر البحث عن تحديثات.");
     h.get_by_label_contains("couldn't reach GitHub");
 }
 
@@ -93,11 +93,11 @@ fn nothing_is_asked_until_the_user_checks() {
     });
     settle(&mut h);
     assert_eq!(calls.load(std::sync::atomic::Ordering::SeqCst), 0);
-    assert!(h.query_by_label_contains("is available").is_none());
+    assert!(h.query_by_label_contains("يتوفر إصدار جديد").is_none());
     h.state_mut().execute("help.check_updates");
     settle(&mut h);
     assert_eq!(calls.load(std::sync::atomic::Ordering::SeqCst), 1);
-    h.get_by_label_contains("PdfCraft 99.0.0 is available");
+    h.get_by_label_contains("يتوفر إصدار جديد من وثيقة (99.0.0)");
 }
 
 /// The desktop app's start, with `settings` restored, and the count of what the source was asked.
@@ -152,7 +152,7 @@ fn the_preference_keeps_the_check_at_start_from_reaching_the_network() {
     h.state_mut().execute("help.check_updates");
     settle(&mut h);
     assert_eq!(calls.load(SeqCst), 1);
-    h.get_by_label_contains("PdfCraft 99.0.0 is available");
+    h.get_by_label_contains("يتوفر إصدار جديد من وثيقة (99.0.0)");
 }
 
 /// The setting is about starting: turning it on asks nothing until the next start.
@@ -197,12 +197,12 @@ fn the_check_at_start_offers_the_prompt_and_later_dismisses_it() {
         app
     });
     let deadline = std::time::Instant::now() + std::time::Duration::from_secs(30);
-    while h.query_by_label_contains("is available").is_none() {
+    while h.query_by_label_contains("يتوفر إصدار جديد").is_none() {
         h.run_steps(2);
         assert!(std::time::Instant::now() < deadline, "timed out waiting for the startup prompt");
         std::thread::sleep(std::time::Duration::from_millis(5));
     }
-    h.get_by_label("LATER").click();
+    h.get_by_label("لاحقًا").click();
     h.run_steps(3);
-    assert!(h.query_by_label_contains("is available").is_none(), "Later closes the prompt");
+    assert!(h.query_by_label_contains("يتوفر إصدار جديد").is_none(), "Later closes the prompt");
 }

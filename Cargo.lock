@@ -1289,11 +1289,12 @@ dependencies = [
 [[package]]
 name = "craft-update"
 version = "0.1.0"
-source = "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
 dependencies = [
  "chrono",
  "dunce",
  "egui",
+ "egui_kittest",
+ "epaint_default_fonts",
  "flate2",
  "getrandom 0.3.4",
  "image",

@@ -58,6 +58,8 @@ fn load_ocr_verify(app: &mut PdfCraftApp) -> Result<(), String> {
 }
 
 fn main() -> Result<(), String> {
+    // وثيقة as it ships: Arabic first, mirrored.
+    pdfcraft_ui_egui::i18n::set_arabic_first(true);
     let mut args = std::env::args().skip(1);
     let out = args.next().ok_or("usage: shot <out.png> [file.pdf] [--option value …]")?;
     let (mut file, mut opts) = (None, Vec::new());

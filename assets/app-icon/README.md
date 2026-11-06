@@ -1,27 +1,18 @@
-# PdfCraft app icon
+# وثيقة app icon
 
-<img src="pdfcraft-small.svg" alt="PdfCraft app icon: an engraved lion's head on red" width="128">
+<img src="pdfcraft-small.svg" alt="وثيقة app icon: a document page with the word وثيقة on PdfCraft red" width="128">
 
-**Creature:** a lion, in a frontal head-and-shoulders portrait, mane running off the bottom of the tile.
+**Design:** a page with a folded corner (on the left, as an Arabic page turns), the word وثيقة in
+Noto Kufi Arabic ExtraBold (outlined as paths, OFL-1.1) and two lines of text, on PdfCraft's red
+rounded tile. Colours: paper `#efe9dc`, ink `#0b0b0c` and PdfCraft red `#b70228`, as كلمة's icon uses WordCraft blue.
 
-**Style:** an engraving (woodcut-weight line work) portrait in the Crafting Apps "owl template" framing:
-a full-bleed colour field, no frame or roundel, the animal looking at the viewer and filling the tile.
+**Tile:** `viewBox="0 0 512 512"`, a rounded square with `rx=112`. Windows and Linux icons use the
+full-bleed tile. macOS icons put it on Apple's grid (an 824 px body centred on a transparent 1024 px
+canvas).
 
-**Palette:** exactly three colours.
-
-| Colour | Hex | Used for |
-|---|---|---|
-| Ink | `#0b0b0c` | line work and the figure's contour |
-| Paper | `#efe9dc` | the figure (the lion's silhouette) |
-| PdfCraft red (app colour) | `#b70228` | the full-bleed field |
-
-**Tile:** `viewBox="0 0 512 512"`, a rounded square with `rx=112` that clips everything. Windows and Linux
-icons use the full-bleed tile. macOS icons put it on Apple's grid (an 824 px body centred on a transparent
-1024 px canvas).
-
-**Provenance:** the project owner's original drawing, made in ArtCraft (2880 px, keyed to the palette), then
-vectorised (potrace; no filtering or warping).
-Licence: [LICENSE.txt](LICENSE.txt) (`MIT OR Apache-2.0`, like the repo).
+**Provenance:** original work for Nasser Alqahtani's وثيقة (2026-11-06), drawn in code. The file names
+still say `pdfcraft` so the packaging scripts are unchanged. Licence: [LICENSE.txt](LICENSE.txt)
+(`MIT OR Apache-2.0`, like the repo); the outlined lettering comes from Noto Kufi Arabic (OFL-1.1).
 
 ## Files
 

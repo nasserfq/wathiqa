@@ -44,12 +44,64 @@ include!(concat!(env!("OUT_DIR"), "/craft_i18n.rs"));
 /// locale is parsed on its first lookup.
 static I18N: LazyLock<I18n> = LazyLock::new(|| {
     let offered: Vec<&str> = LANGUAGES.iter().map(|l| l.code).collect();
-    let (i18n, problems) = I18n::new(CRAFT_I18N, &offered);
+    // The catalogs' translations say PdfCraft; the app shows its own name (sources stay as looked up).
+    let catalogs: Vec<_> = CRAFT_I18N
+        .iter()
+        .map(|&(code, shared, app)| {
+            let name = if code.eq_ignore_ascii_case(MAIN_LANGUAGE) { crate::APP_NAME } else { crate::LATIN_NAME };
+            (code, rebrand(shared, name), rebrand(app, name))
+        })
+        .collect();
+    let (i18n, problems) = I18n::new(Box::leak(catalogs.into_boxed_slice()), &offered);
     for problem in problems {
         log::warn!("interface catalogs: {problem}");
     }
     i18n
 });
+
+/// `tsv` with "PdfCraft" (and "PDFCraft") replaced by `name` in the translation columns (after
+/// the context and source columns), so lookups by English source still match.
+fn rebrand(tsv: &'static str, name: &str) -> &'static str {
+    if !tsv.contains("PdfCraft") && !tsv.contains("PDFCraft") {
+        return tsv;
+    }
+    let mut out = String::with_capacity(tsv.len());
+    for line in tsv.lines() {
+        match line.match_indices('\t').nth(1) {
+            Some((i, _)) => {
+                out.push_str(line.get(..i).unwrap_or_default());
+                out.push_str(&line.get(i..).unwrap_or_default().replace("PdfCraft", name).replace("PDFCraft", name));
+            }
+            None => out.push_str(line),
+        }
+        out.push('\n');
+    }
+    Box::leak(out.into_boxed_str())
+}
+
+/// The app's main language: whenever its catalog is embedded the interface is Arabic, unless
+/// English is picked in Preferences (the only other choice), and the interface is mirrored.
+pub const MAIN_LANGUAGE: &str = "ar";
+
+static ARABIC_FIRST: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Make this run وثيقة: Arabic unless English is picked, only those two offered, and an Arabic
+/// interface mirrored ([`crate::mirror`]). The app and its screenshot tool turn this on at start;
+/// the library's tests keep PdfCraft's behaviour (every language, egui's own right to left).
+pub fn set_arabic_first(on: bool) {
+    ARABIC_FIRST.store(on, std::sync::atomic::Ordering::Relaxed);
+}
+
+/// Whether [`set_arabic_first`] is on.
+pub fn arabic_first() -> bool {
+    ARABIC_FIRST.load(std::sync::atomic::Ordering::Relaxed)
+}
+
+/// The app's name in the current interface language: وثيقة in Arabic, Wathiqa otherwise (a
+/// build or test without an Arabic face can still draw it).
+pub fn app_name() -> &'static str {
+    if current().code() == MAIN_LANGUAGE { crate::APP_NAME } else { crate::LATIN_NAME }
+}
 
 /// The `language` preference value that follows the system locale.
 pub const AUTO: &str = "auto";
@@ -204,6 +256,12 @@ impl Lang {
     /// Resolve the `language` preference: a language code, or [`AUTO`] (and anything unknown,
     /// e.g. a code from a newer version) to follow the system locale.
     pub fn from_pref(pref: &str) -> Lang {
+        if arabic_first()
+            && let Some(ar) = Lang::from_code(MAIN_LANGUAGE)
+        {
+            // Arabic unless English was picked.
+            return if pref.eq_ignore_ascii_case(Lang::EN.code()) { Lang::EN } else { ar };
+        }
         Lang::from_code(pref).unwrap_or_else(system_lang)
     }
 
@@ -227,6 +285,11 @@ impl Lang {
     /// Latin-script fallback with the other Latin names when a script's face is missing, rather
     /// than sorting it into a block of unrenderable labels.
     pub fn for_picker_by(mut shown: impl FnMut(Lang) -> &'static str) -> Vec<Lang> {
+        if arabic_first()
+            && let Some(ar) = Lang::from_code(MAIN_LANGUAGE)
+        {
+            return vec![ar, Lang::EN];
+        }
         let mut rest: Vec<Lang> = Lang::all().filter(|l| l.code() != Lang::EN.code()).collect();
         rest.sort_by_cached_key(|l| name_sort_key(shown(*l)));
         std::iter::once(Lang::EN).chain(rest).collect()

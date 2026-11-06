@@ -101,7 +101,7 @@ fn clipboard_dir() -> Option<std::path::PathBuf> {
     if cfg!(target_os = "macos") {
         env("HOME").map(|h| h.join("Library/Caches/PdfCraft/Clipboard"))
     } else if cfg!(windows) {
-        env("LOCALAPPDATA").map(|d| d.join("PdfCraft").join("Clipboard"))
+        env("LOCALAPPDATA").map(|d| d.join(crate::STORAGE_NAME).join("Clipboard"))
     } else {
         env("XDG_CACHE_HOME").or_else(|| env("HOME").map(|h| h.join(".cache"))).map(|d| d.join("pdfcraft/clipboard"))
     }

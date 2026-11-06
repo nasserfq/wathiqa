@@ -3,8 +3,12 @@
 //! it can be told from the release of the same version. The version itself stays the release's:
 //! the update check compares it with published releases.
 
-/// The release version from the workspace `Cargo.toml`.
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+/// وثيقة's release version: `1.<n>.0` for release n (the release workflow sets
+/// `WATHIQA_VERSION`), else the workspace `Cargo.toml` version (local builds).
+pub const VERSION: &str = match option_env!("WATHIQA_VERSION") {
+    Some(v) => v,
+    None => env!("CARGO_PKG_VERSION"),
+};
 
 /// The compile-time build label, if any.
 pub const LABEL: Option<&str> = option_env!("PDFCRAFT_BUILD_LABEL");

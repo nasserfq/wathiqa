@@ -1571,9 +1571,9 @@ fn dialog_about(ui: &mut egui::Ui, req: &mut Pending) -> bool {
         2 => crate::credits::models_ui(ui),
         _ => {
             ui.horizontal(|ui| {
-                widgets::artcraft_mark(ui, 40.0);
+                widgets::app_logo(ui, 40.0);
                 ui.vertical(|ui| {
-                    ui.label(egui::RichText::new("PdfCraft").font(theme::semibold(20.0)));
+                    ui.label(egui::RichText::new(crate::i18n::app_name()).font(theme::semibold(20.0)));
                     ui.label(crate::i18n::fmt(tl!("Version {v}"), &[("v", &pdfcraft_engine::build_info::version())]));
                 });
             });
@@ -1587,12 +1587,20 @@ fn dialog_about(ui: &mut egui::Ui, req: &mut Pending) -> bool {
                 .small(),
             );
             ui.add_space(12.0);
-            ui.horizontal(|ui| {
-                ui.label(egui::RichText::new(tl!("Part of")).color(t.text_muted));
-                widgets::artcraft_logo(ui, 16.0);
-            });
+            // Who made this app, and the original work it is built on.
+            let arabic = crate::i18n::current().code() == crate::i18n::MAIN_LANGUAGE;
+            let (by, base) = if arabic {
+                ("من تطوير ناصر القحطاني، ضمن تطبيقات مكتب.", "مبنيّ على PdfCraft، البرنامج المفتوح المصدر من فريق ArtCraft ومساهميه، بالترخيص نفسه.")
+            } else {
+                (
+                    "Made by Nasser Alqahtani, one of the Mokteb apps.",
+                    "Built on PdfCraft, the open-source PDF application by the ArtCraft team and its contributors, under the same licence.",
+                )
+            };
+            ui.label(egui::RichText::new(by).font(theme::semibold(14.0)));
+            ui.label(egui::RichText::new(base).color(t.text_muted));
             ui.add_space(6.0);
-            if let Some(cmd) = widgets::community_links(ui) {
+            if let Some(cmd) = widgets::app_links(ui) {
                 req.link_command = Some(cmd);
             }
         }

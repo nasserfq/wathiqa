@@ -175,7 +175,7 @@ impl RecoveryStore {
         if cfg!(target_os = "macos") {
             env("HOME").map(|h| h.join("Library/Application Support/PdfCraft/Recovery"))
         } else if cfg!(windows) {
-            env("LOCALAPPDATA").map(|d| d.join("PdfCraft").join("Recovery"))
+            env("LOCALAPPDATA").map(|d| d.join(crate::STORAGE_NAME).join("Recovery"))
         } else {
             env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("pdfcraft/recovery"))
         }
@@ -198,7 +198,7 @@ pub fn default_dictionary_dir() -> Option<PathBuf> {
     if cfg!(target_os = "macos") {
         env("HOME").map(|h| h.join("Library/Application Support/PdfCraft/Dictionary"))
     } else if cfg!(windows) {
-        env("LOCALAPPDATA").map(|d| d.join("PdfCraft").join("Dictionary"))
+        env("LOCALAPPDATA").map(|d| d.join(crate::STORAGE_NAME).join("Dictionary"))
     } else {
         env("XDG_DATA_HOME").or_else(|| env("HOME").map(|h| h.join(".local/share"))).map(|d| d.join("pdfcraft/dictionary"))
     }
