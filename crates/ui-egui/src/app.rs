@@ -116,6 +116,7 @@ impl PdfCraftApp {
             fill_text_default: fill_sign::TextBorder::NONE,
             dialog: None,
             updates: updates::Updates::default(),
+            connect_ai: Default::default(),
             printer_source: None,
             options_source: None,
             print_tasks: print_ui::PrintTasks::default(),

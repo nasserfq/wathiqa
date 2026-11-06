@@ -153,6 +153,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "ai-connect"
+version = "0.18.1"
+dependencies = [
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.21",
+]
+
+[[package]]
 name = "aligned-vec"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4699,6 +4708,7 @@ version = "0.18.1"
 name = "pdfcraft-ui-egui"
 version = "0.18.1"
 dependencies = [
+ "ai-connect",
  "arboard",
  "base64 0.23.1",
  "block2 0.6.2",

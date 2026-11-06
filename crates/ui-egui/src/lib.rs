@@ -47,6 +47,7 @@ macro_rules! tl_ctx {
         $crate::i18n::tr_ctx($crate::i18n::current(), $context, $s)
     };
 }
+mod ai_connect_ui;
 pub mod canvas;
 mod chrome;
 mod image_engine;
@@ -366,6 +367,8 @@ pub struct PdfCraftApp {
     pub dialog: Option<Dialog>,
     /// How to ask for the latest release (the desktop app sets it; see `updates`).
     pub(crate) updates: updates::Updates,
+    /// Help ▸ Connect to AI apps: the AI apps found and the last action's result.
+    pub(crate) connect_ai: ai_connect_ui::Runtime,
     /// Lists the Print dialog's printers in the background (the desktop app sets it; see
     /// [`PrinterSource`]).
     pub printer_source: Option<PrinterSource>,

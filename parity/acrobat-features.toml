@@ -1782,6 +1782,18 @@ evidence = ["crates/ui-egui/tests/it/updates.rs::a_newer_release_is_offered_for_
 notes = "asks GitHub Releases through craft-update at start (desktop app only) and on request, offers the release page, and updates and restarts in place where the install type allows it; an install waits while documents are unsaved; Preferences ▸ Check for updates when PdfCraft starts (update_check_at_start, on by default) turns the check at start off, leaving only the request from the Help menu; turning it on takes effect at the next start"
 
 [[feature]]
+id = "view.connect-ai-apps"
+title = "Help ▸ Connect to AI apps"
+area = "B"
+tier = "P2"
+milestone = "M3"
+status = "shipped"
+commands = ["help.connect_ai"]
+tools = []
+evidence = ["crates/ui-egui/tests/it/commands.rs::connect_to_ai_apps_opens_and_closes", "crates/ai-connect/src/tests.rs::every_client_connects_and_disconnects"]
+notes = "وثيقة's own addition, not an Acrobat feature: registers wathiqa-cli mcp with Claude, Claude Code, Codex, Cursor, VS Code, Windsurf, Gemini CLI and LM Studio by writing their settings (desktop app only)"
+
+[[feature]]
 id = "view.single-key-accelerators"
 title = "Single-key tool accelerators"
 area = "B"

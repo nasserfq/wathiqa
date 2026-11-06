@@ -79,6 +79,8 @@ jobs:
         run: |
           DIST="$PWD/out" packaging/macos/package.sh --arch universal
           mv out/pdfcraft-*.dmg "out/wathiqa-$WATHIQA_VERSION-macos-universal.dmg"
+          # Claude desktop extension: double-click to add وثيقة to Claude.
+          packaging/mcpb/make-mcpb.sh out "$WATHIQA_VERSION"
       - name: Windows and Linux builds
         if: runner.os != 'macOS'
         shell: bash
@@ -129,5 +131,6 @@ jobs:
             - macOS (Apple Silicon and Intel, macOS 11 or later): the `.dmg`. Signed and notarized by Apple.
             - Windows: the `windows-x64-portable.zip`, unzip and run `Wathiqa.exe`.
             - Linux: the `linux-x86_64.tar.gz`, extract and run `wathiqa`.
+            - Claude (macOS): `wathiqa-claude-extension-macos.mcpb`, double-click it with وثيقة in Applications to add وثيقة to Claude. Other AI apps: Help ▸ «ربط مع الذكاء الاصطناعي» in وثيقة.
 
             وثيقة تحدّث نفسها: عند توفر إصدار جديد تظهر رسالة «تحديث وإعادة تشغيل».

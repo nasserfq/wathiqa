@@ -408,6 +408,8 @@ pub const COMMANDS: &[CommandSpec] = &[
     c("help.app_page", "PdfCraft web page", HELP, None, Nothing, "globe"),
     c("help.github", "PdfCraft on GitHub", HELP, None, Nothing, "code-xml"),
     c("help.check_updates", "Check for updates…", HELP, None, Nothing, "cloud"),
+    // Writes the AI apps' own MCP settings so they can drive the app (the desktop app only).
+    c("help.connect_ai", "Connect to AI apps…", HELP, None, Nothing, "sparkles"),
     c("help.about", "About PdfCraft", HELP, None, Nothing, "info"),
 ];
 
