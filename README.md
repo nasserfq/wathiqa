@@ -40,9 +40,50 @@
 
 التحديث تلقائي: عند صدور إصدار جديد تعرض وثيقة «تحديث وإعادة تشغيل»، وتبقى إعداداتك وملفاتك كما هي.
 
+## التحكم بوثيقة من الذكاء الاصطناعي (MCP)
+
+وثيقة جاهز للذكاء الاصطناعي: يأتي مع خادم [MCP](https://modelcontextprotocol.io)، وهو معيار مفتوح تستخدمه تطبيقات الذكاء الاصطناعي لتشغيل البرامج. بعد ربطه تطلب بكلامك، مثلًا «افتح هذا الملف، ولخّص نصه، وأضف تعليقًا على الصفحة الأولى، وادمجه مع العقد، واحفظه»، فينفّذه الذكاء الاصطناعي في وثيقة خطوة بخطوة: فتح ملفات PDF وقراءة نصها والبحث فيها وتدوير الصفحات وحذفها ودمج الملفات وإضافة التعليقات والعلامات المائية وتعبئة النماذج والتعرف الضوئي على النصوص والحفظ.
+
+يعمل مع أي تطبيق يدعم MCP، مثل Claude ‏(التطبيق وClaude Code)، وCodex من OpenAI، وCursor، وVS Code مع Copilot، وGemini CLI، وLM Studio ‏(نماذج تعمل على جهازك دون إنترنت). الخادم مجاني ويعمل على جهازك، أما الذكاء الاصطناعي فمن التطبيق الذي تختاره وبحسب اشتراكك فيه.
+
+**1. مكان الخادم:** يُثبَّت مع وثيقة ويُحدَّث معه.
+
+| النظام | المسار |
+|---|---|
+| macOS | `/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli` |
+| Windows | `wathiqa-cli.exe` في مجلد وثيقة، بجانب `Wathiqa.exe` |
+| Linux | `wathiqa-cli` في مجلد وثيقة، بجانب `wathiqa` |
+
+**2. أضفه إلى تطبيق الذكاء الاصطناعي:**
+
+- **تطبيق Claude:** الإعدادات ← «Developer» ← «Edit Config»، ثم أضف ما يلي إلى الملف `claude_desktop_config.json` وأعد تشغيل Claude:
+
+<div dir="ltr">
+
+```json
+{
+  "mcpServers": {
+    "wathiqa": {
+      "command": "/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+</div>
+
+- في Windows ضع مسار `wathiqa-cli.exe` بدل المسار السابق، مع مضاعفة الشرطة المائلة، مثل `"C:\\Users\\اسمك\\Wathiqa\\wathiqa-cli.exe"`.
+- **Cursor وGemini CLI وLM Studio** وأغلب التطبيقات الأخرى: الإعداد نفسه (`mcpServers`) في ملف MCP الخاص بكل تطبيق (`~/.cursor/mcp.json`، ‏`~/.gemini/settings.json`، ‏`mcp.json` في LM Studio).
+- **Claude Code:** <code dir="ltr">claude mcp add wathiqa -- "/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli" mcp</code>
+- **Codex:** <code dir="ltr">codex mcp add wathiqa -- "/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli" mcp</code>
+
+بهذا يعمل الذكاء الاصطناعي على الملفات في الخلفية دون نافذة، ثم يحفظها حيث تطلب.
+
 ## ما أضافه ناصر القحطاني إلى PdfCraft
 
 - الواجهة العربية افتراضيًا، وعكس الواجهة كلها لتُقرأ من اليمين إلى اليسار، مع بقاء صفحات PDF كما هي.
+- خادم MCP ضمن التنزيلات لتتحكم تطبيقات الذكاء الاصطناعي بوثيقة.
 - الاسم والشعار، ونافذة التثبيت العربية في Mac.
 - تطبيق Mac موقّع وموثَّق لأجهزة Apple Silicon وIntel، وتنزيلات Windows وLinux.
 - التحديث من داخل التطبيق بنافذة عربية «تحديث وإعادة تشغيل».
@@ -70,6 +111,15 @@ repository.
 It is based on [PdfCraft](https://github.com/storytold/pdfcraft) by the ArtCraft team and the
 PdfCraft contributors. Wathiqa is an independent project, not made, sponsored or endorsed by the
 ArtCraft team, and carries none of the ArtCraft trademarks.
+
+## Use it from AI apps (MCP)
+
+Wathiqa ships an [MCP](https://modelcontextprotocol.io) server, so Claude and any other MCP app
+(Codex, Cursor, VS Code, Gemini CLI, LM Studio…) can open, read, search, rotate, merge, comment on, fill and save PDFs. It is installed and updated with
+the app: `/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli` on macOS, `wathiqa-cli.exe` beside `Wathiqa.exe` on Windows, `wathiqa-cli` beside `wathiqa`
+on Linux. Add it to your client as that command with the argument `mcp` (for example
+`claude mcp add wathiqa -- "/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli" mcp`). The server
+works on PDF files directly, without a window.
 
 ## Build from source
 
