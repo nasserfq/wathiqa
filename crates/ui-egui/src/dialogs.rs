@@ -459,6 +459,10 @@ fn dialog_body(ui: &mut egui::Ui, app: &mut PdfCraftApp, dialog: Dialog, req: &m
                 return false;
             }
         }
+        Dialog::ConnectAi => {
+            req.close = crate::ai_connect_ui::body(ui, app);
+            return false;
+        }
         Dialog::PinTool => {
             if !dialog_pin_tool(ui, app, req) {
                 return false;

@@ -46,6 +46,15 @@
 
 يعمل مع أي تطبيق يدعم MCP، مثل Claude ‏(التطبيق وClaude Code)، وCodex من OpenAI، وCursor، وVS Code مع Copilot، وGemini CLI، وLM Studio ‏(نماذج تعمل على جهازك دون إنترنت). الخادم مجاني ويعمل على جهازك، أما الذكاء الاصطناعي فمن التطبيق الذي تختاره وبحسب اشتراكك فيه.
 
+### الطريقة السهلة: زر واحد
+
+- **من داخل وثيقة:** افتح قائمة «مساعدة» ← «ربط مع الذكاء الاصطناعي…»، ثم اضغط «ربط» بجانب التطبيق الذي تستخدمه (Claude، ‏Claude Code، ‏Codex، ‏Cursor، ‏VS Code، ‏Windsurf، ‏Gemini CLI، ‏LM Studio) وأعد تشغيله. تكتب وثيقة الإعداد في ملفات ذلك التطبيق بدلًا منك، وتحتفظ بنسخة احتياطية من الملف قبل أول تعديل. ولأي تطبيق آخر يدعم MCP اضغط «نسخ الإعداد» والصقه في إعداداته.
+- **Claude على Mac:** نزّل `wathiqa-claude-extension-macos.mcpb` من [صفحة الإصدارات](https://github.com/nasserfq/wathiqa/releases/latest) وافتحه بنقرتين، فيعرض Claude نافذة «تثبيت». تحتاج وثيقة في مجلد التطبيقات.
+
+**نصيحة:** اذكر اسم البرنامج بالحروف اللاتينية في طلبك، مثل «استخدم أدوات wathiqa لفتح الملف…»، ليستخدم الذكاء الاصطناعي وثيقة لا Acrobat أو Preview. وإن ربطت وثيقة وأنت في محادثة مفتوحة فابدأ محادثة جديدة.
+
+### الطريقة اليدوية
+
 **1. مكان الخادم:** يُثبَّت مع وثيقة ويُحدَّث معه.
 
 | النظام | المسار |
@@ -117,7 +126,7 @@ ArtCraft team, and carries none of the ArtCraft trademarks.
 Wathiqa ships an [MCP](https://modelcontextprotocol.io) server, so Claude and any other MCP app
 (Codex, Cursor, VS Code, Gemini CLI, LM Studio…) can open, read, search, rotate, merge, comment on, fill and save PDFs. It is installed and updated with
 the app: `/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli` on macOS, `wathiqa-cli.exe` beside `Wathiqa.exe` on Windows, `wathiqa-cli` beside `wathiqa`
-on Linux. Add it to your client as that command with the argument `mcp` (for example
+on Linux. The easiest way to add it is Help ▸ Connect to AI apps in Wathiqa (one button per AI app; it writes that app's settings for you), or on a Mac the `wathiqa-claude-extension-macos.mcpb` from the releases page for Claude. By hand, add it to your client as that command with the argument `mcp` (for example
 `claude mcp add wathiqa -- "/Applications/وثيقة.app/Contents/MacOS/wathiqa-cli" mcp`). The server
 works on PDF files directly, without a window.
 

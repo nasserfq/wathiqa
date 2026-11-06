@@ -8,6 +8,15 @@ Supply `--root` at most once, followed by a nonempty directory path. Missing ope
 repeated roots and another long option in place of the directory are refused before any
 script is read or server is started. Prefix a directory name beginning with `--` with `./`.
 
+## Connect from the app
+
+Wathiqa's Help ▸ Connect to AI apps (`help.connect_ai`) registers the `wathiqa-cli mcp` beside
+the running app with Claude, Claude Code, Codex, Cursor, VS Code, Windsurf, Gemini CLI and LM Studio
+by writing each one's own MCP settings (the `ai-connect` crate), with a one-time backup of the file
+it changes. Other MCP apps get the same entry to paste. On macOS the release also ships
+`wathiqa-claude-extension-macos.mcpb`, a Claude desktop extension that runs the server inside
+`/Applications/وثيقة.app` (`packaging/mcpb/make-mcpb.sh`).
+
 ## Install and register
 
 From the repository root, with Rust 1.95+ and a native linker installed

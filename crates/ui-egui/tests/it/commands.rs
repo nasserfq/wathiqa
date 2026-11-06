@@ -534,6 +534,22 @@ fn the_about_dialog_shows_the_running_version() {
     h.get_by_label_contains(&format!("Version {}", env!("CARGO_PKG_VERSION")));
 }
 
+/// Help ▸ Connect to AI apps opens its window, which says where the MCP server should be when it
+/// isn't beside the running program (a test binary), and its Close button closes it.
+#[test]
+fn connect_to_ai_apps_opens_and_closes() {
+    let mut h = harness();
+    assert!(pdfcraft_engine::commands::menu("Help").any(|c| c.id == "help.connect_ai"));
+    h.state_mut().execute("help.connect_ai");
+    h.run_steps(3);
+    assert_eq!(h.state().dialog, Some(Dialog::ConnectAi));
+    h.get_by_label("Connect to AI apps");
+    h.get_by_label_contains("wathiqa-cli");
+    h.get_by_label("Close").click();
+    h.run_steps(3);
+    assert_eq!(h.state().dialog, None);
+}
+
 /// Check that the quit shortcut needs exact platform modifiers and that unsaved work opens the save prompt
 /// instead of closing.
 #[test]

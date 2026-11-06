@@ -110,6 +110,10 @@ impl PdfCraftApp {
                     "advanced" => Some(Dialog::Properties(PropsTab::Advanced)),
                     "space-audit" => Some(Dialog::Properties(PropsTab::SpaceAudit)),
                     "shortcuts" => Some(Dialog::Shortcuts),
+                    "connect-ai" => {
+                        crate::ai_connect_ui::open(self);
+                        self.dialog
+                    }
                     "split" => Some(Dialog::Split),
                     "protect" => Some(Dialog::Protect),
                     "page-boxes" => Some(Dialog::PageBoxes),

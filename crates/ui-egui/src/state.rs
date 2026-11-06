@@ -106,6 +106,8 @@ pub enum Dialog {
     Properties(PropsTab),
     About,
     Shortcuts,
+    /// Help ▸ Connect to AI apps (`crate::ai_connect_ui`).
+    ConnectAi,
     Split,
     /// Pages ▸ Number pages… (page labels).
     NumberPages,

@@ -35,6 +35,8 @@ pub const TABLE: &[(&str, Class)] = &[
     ("crypt", Class::Standalone(0)),
     ("arlington", Class::Standalone(0)),
     ("prc", Class::Standalone(0)),
+    // Writes the AI apps' MCP settings (Help ▸ Connect to AI apps); no workspace dependencies.
+    ("ai-connect", Class::Standalone(0)),
     // L1 object layer
     ("cos", Class::Standalone(1)),
     // L2 core model

@@ -53,6 +53,8 @@ skrifa = "0.44"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 craft-update = { workspace = true }
+# Help ▸ Connect to AI apps: writes the AI apps' own MCP settings.
+ai-connect = { path = "../ai-connect" }
 # Control-channel tokens.
 getrandom = "0.4"
 # Create ▸ Clipboard (images; already in the tree through egui-winit).

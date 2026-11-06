@@ -30,7 +30,10 @@ const INTERNAL_ERROR: i64 = -32603;
 /// Longest JSON-RPC request line [`McpServer::serve`] buffers into memory (16 MiB).
 pub const MAX_LINE_BYTES: usize = 16 * 1024 * 1024;
 
-const INSTRUCTIONS: &str = "PdfCraft edits PDFs. Open a file with doc_open to get a document id, then inspect \
+const INSTRUCTIONS: &str = "This server is وثيقة (Wathiqa), the Arabic PDF reader and editor installed on this computer, \
+NOT Adobe Acrobat or Preview. «وثيقة» is the app's name (it also means \"document\" in Arabic): when the user mentions \
+وثيقة or Wathiqa, or asks to read, edit, fill, sign or save a PDF with it, use these tools, never another app or \
+computer use. It is based on PdfCraft, which edits PDFs. Open a file with doc_open to get a document id, then inspect \
 (doc_info, text_extract, text_find, page_render) or edit it (page_*, doc_set_info). Edits are undoable \
 (edit_undo) and stay in memory until doc_save. Page numbers are 1-based. Open documents are also \
 resources: pdfcraft://doc/{doc}/info, /text, /page/{page}/text and /page/{page}/image. \

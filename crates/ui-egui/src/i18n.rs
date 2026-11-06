@@ -738,6 +738,10 @@ pub fn command_label(text: &str) -> String {
 /// that keeps the label's shape ([`own_id`]), otherwise [`command_label`] of the current English
 /// label.
 pub fn menu_label(id: &str, label: &str) -> String {
+    // وثيقة's own command, which PdfCraft's catalogs don't have.
+    if id == "help.connect_ai" {
+        return crate::ai_connect_ui::menu_label().to_owned();
+    }
     let lang = current();
     match own_id(lang, id, label).then(|| lang.i18n().get(lang.lang, "@id", id)).flatten() {
         Some(translated) => translated.to_owned(),
