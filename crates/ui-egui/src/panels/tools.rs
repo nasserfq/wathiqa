@@ -271,17 +271,25 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
                 );
                 let (chip, fill, cfg) = match item.availability {
                     Availability::Ready => (tl!("Ready"), Color32::from_rgb(0xDD, 0xF3, 0xE4), Color32::from_rgb(0x1E, 0x7B, 0x43)),
-                    Availability::Planned(m) => (m, t.pressed, t.text_muted),
+                    // A planned tool says so; its milestone id is for the parity list, not for readers.
+                    Availability::Planned(_) => ("Coming soon", t.pressed, t.text_muted),
                     Availability::Provider => ("AI", t.pressed, t.text_muted),
                 };
                 let font = theme::semibold(9.5);
                 let chip_label = tl!(chip).to_string();
                 let w = crate::widgets::text_width(ui, &chip_label, &font);
                 let r = Rect::from_center_size(body.right_center() - vec2(w / 2.0 + 10.0, 0.0), vec2(w + 10.0, 16.0));
-                row_label(ui, tl!(item.label), theme::regular(13.0), fg, body.left_center() + vec2(34.0, 0.0), r.left() - body.left() - 42.0);
+                row_label(
+                    ui,
+                    &file_type_label(tl!(item.label)),
+                    theme::regular(13.0),
+                    fg,
+                    body.left_center() + vec2(34.0, 0.0),
+                    r.left() - body.left() - 42.0,
+                );
                 ui.painter().rect_filled(r, CornerRadius::same(4), fill);
                 ui.painter().text(r.center(), Align2::CENTER_CENTER, chip_label, font, cfg);
-                let resp = theme::hand(resp).on_hover_text(format!("{} — {}", tl!(item.label), item.command));
+                let resp = theme::hand(resp).on_hover_text(file_type_label(tl!(item.label)));
                 // An entry with further commands opens a menu; its caret goes before the chip.
                 if item.actions.is_empty() {
                     if resp.clicked() {
@@ -324,5 +332,20 @@ fn tool_detail(app: &mut PdfCraftApp, ui: &mut egui::Ui, t: &Tokens, g: &'static
     }
     if let Some(cmd) = run {
         app.run_command(cmd);
+    }
+}
+
+/// A file type's label as written, with its extension read left to right: in an Arabic label
+/// "(.xlsx)" would otherwise show its dot after the letters, as "(xlsx.)".
+fn file_type_label(label: &str) -> String {
+    label.replace("(.", "(\u{200E}.")
+}
+
+#[cfg(test)]
+mod file_type_label_tests {
+    #[test]
+    fn an_extension_keeps_its_dot_in_front() {
+        assert_eq!(super::file_type_label("إكسل (.xlsx)"), "إكسل (\u{200E}.xlsx)");
+        assert_eq!(super::file_type_label("Image (PNG)"), "Image (PNG)");
     }
 }
