@@ -66,10 +66,24 @@ fn craft_i18n() -> String {
     for (code, shared, app) in entries {
         // `{:?}` escapes the path (Windows backslashes) as a Rust string literal.
         let shared = shared.map_or_else(|| "\"\"".to_string(), |p| format!("include_str!({p:?})"));
-        let _ = writeln!(o, "    ({code:?}, {shared}, include_str!({app:?})),");
+        // وثيقة's own rows go before craft-i18n's catalog: of a row defined twice the first is
+        // kept, so they also replace rows craft-i18n leaves in English.
+        let app = match own_rows(&code) {
+            Some(own) => format!("concat!(include_str!({own:?}), \"\\n\", include_str!({app:?}))"),
+            None => format!("include_str!({app:?})"),
+        };
+        let _ = writeln!(o, "    ({code:?}, {shared}, {app}),");
     }
     o.push_str("];\n");
     o
+}
+
+/// `i18n/locales/<code>/pdfcraft.tsv` in this repository: rows added for وثيقة, in craft-i18n's
+/// format, read before craft-i18n's own catalog for that locale.
+fn own_rows(code: &str) -> Option<std::path::PathBuf> {
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../i18n/locales").join(code).join(APP_CATALOG);
+    println!("cargo::rerun-if-changed={}", path.display());
+    path.is_file().then_some(path)
 }
 
 /// One embedded locale: its code, its `common.tsv` if it has one, and its PdfCraft catalog.

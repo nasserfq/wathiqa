@@ -1,0 +1,92 @@
+# وثيقة's own Arabic rows: strings craft-i18n's catalog lacks or leaves in English. They are read
+# before craft-i18n's rows (crates/ui-egui/build.rs), so these win. Same format as craft-i18n:
+# context <TAB> English source text <TAB> translation; \n is a line break.
+#
+# Clean room: every entry was written from the plain meaning of the English text in ordinary
+# computing vocabulary. No other product's localisation was consulted or copied.
+	Dock navigation rail on Left	تثبيت شريط التنقل على اليسار
+	Dock navigation rail on Right	تثبيت شريط التنقل على اليمين
+	{font}, {size} pt	{font}، {size} نقطة
+	bold	غامق
+	italic	مائل
+	1 line	سطر واحد
+	{n} lines	{n} أسطر
+	New bookmarks from text styles	إشارات مرجعية جديدة من أنماط النص
+	This document has no text to make bookmarks from.	لا يحتوي هذا المستند على نص لإنشاء إشارات مرجعية منه.
+	Every line set in the style chosen for a level becomes a bookmark of that level, under a new first bookmark.	كل سطر مكتوب بالنمط المختار لمستوى يصبح إشارة مرجعية من ذلك المستوى، تحت إشارة مرجعية أولى جديدة.
+	Level {n}	المستوى {n}
+	Search settings…	البحث في الإعدادات…
+	General & Interface	عام والواجهة
+	Navigation rail side	جانب شريط التنقل
+	Check for updates when PdfCraft starts	التحقق من التحديثات عند بدء تشغيل وثيقة
+	Invert middle-button drag	عكس السحب بالزر الأوسط
+	Panning or auto-scrolling with the middle (wheel) button moves the page the other way.	التحريك أو التمرير التلقائي بالزر الأوسط (العجلة) يحرّك الصفحة في الاتجاه المعاكس.
+	PdfCraft's checks now find no problems for {level}. This is not a validator result. Save to keep the changes.	لم تعد فحوص وثيقة تجد مشكلات في {level}. هذه ليست نتيجة أداة تحقق. احفظ للاحتفاظ بالتغييرات.
+	PdfCraft's checks found no problems for {level}. This is not a validator result.	لم تجد فحوص وثيقة مشكلات في {level}. هذه ليست نتيجة أداة تحقق.
+	Hotbar settings	إعدادات شريط الأدوات السريع
+	Hotbar settings / add tools	إعدادات شريط الأدوات السريع / إضافة أدوات
+	Remove from hotbar	إزالة من شريط الأدوات السريع
+	Float	عائم
+	Drag hotbar	سحب شريط الأدوات السريع
+	Hotbar tools	أدوات الشريط السريع
+	Close menu	إغلاق القائمة
+	Layout & Sizing	التخطيط والحجم
+	Toolbar size	حجم شريط الأدوات
+	Vertical layout	تخطيط عمودي
+	Stick to a side:	الالتصاق بجانب:
+	Extend the docked toolbar along the entire side. Choose a side above to enable.	مدّ شريط الأدوات المثبّت على طول الجانب كله. اختر جانبًا أعلاه لتفعيله.
+	Full-side strip	شريط بطول الجانب
+	Add Tools to Hotbar	إضافة أدوات إلى الشريط السريع
+	Search all tools…	البحث في كل الأدوات…
+	Page Properties	خصائص الصفحة
+	Tab Order	ترتيب الانتقال
+	Use Row Order	استخدام ترتيب الصفوف
+	Use Column Order	استخدام ترتيب الأعمدة
+	Use Document Structure	استخدام بنية المستند
+	Unspecified	غير محدد
+	New bookmarks from text styles…	إشارات مرجعية جديدة من أنماط النص…
+	Paste bookmarks	لصق الإشارات المرجعية
+	Field names with + - * / and parentheses; put \\ before spaces in names.	أسماء الحقول مع + - * / والأقواس؛ ضع \\ قبل المسافات في الأسماء.
+	Remove this leaf tag from reading order and mark its direct content as an artifact	إزالة هذه العلامة الطرفية من ترتيب القراءة ووسم محتواها المباشر كعنصر زخرفي
+	Engine	المحرك
+	Built-in	مدمج
+	Combine engines	الجمع بين المحركات
+	Straighten pages scanned sideways or upside down	تعديل الصفحات الممسوحة جانبيًا أو مقلوبة
+	Straighten skewed text lines	تقويم أسطر النص المائلة
+	Remove scan speckle	إزالة نقاط المسح
+	Black and white (binarize)	أبيض وأسود (ثنائي)
+	Re-reading the region…	إعادة قراءة المنطقة…
+	Re-reading the page…	إعادة قراءة الصفحة…
+	The re-read was cancelled; the words are unchanged	أُلغيت إعادة القراءة؛ الكلمات لم تتغير
+	Cancel re-read	إلغاء إعادة القراءة
+	Custom scale	مقياس مخصص
+	Enhance Scanned File	تحسين الملف الممسوح
+	Cleans up the scanned pictures in place: recognized text, comments and links on the pages stay as they are.	ينظّف الصور الممسوحة في مكانها: يبقى النص المتعرَّف عليه والتعليقات والروابط على الصفحات كما هي.
+	Background removal	إزالة الخلفية
+	Evens out the paper so a grey or yellowed background turns white, and darkens faint strokes. 0 is off.	يوحّد لون الورق فتصبح الخلفية الرمادية أو المصفرّة بيضاء، ويُغمّق الخطوط الباهتة. 0 يعني إيقاف.
+	Edge shadow removal	إزالة ظلال الحواف
+	Lightens shadows along the edges of the scan, such as a book's gutter or a copier's dark border	يفتّح الظلال على حواف المسح، مثل منتصف الكتاب أو الإطار الداكن لآلة النسخ
+	Despeckle	إزالة النقاط
+	Removes isolated dark specks such as dust and scanner noise. The only filter black and white scans take.	يزيل النقاط الداكنة المنفردة مثل الغبار وتشويش الماسح. وهو المرشّح الوحيد الذي يقبله المسح بالأبيض والأسود.
+	Enhance	تحسين
+	No scanned pages were cleaned up.	لم تُنظَّف أي صفحات ممسوحة.
+	Enhancing scans… image {d} of {t}	جارٍ تحسين المسح… الصورة {d} من {t}
+	Recent files to keep	عدد الملفات الحديثة المحفوظة
+	Lowering this forgets the oldest files. At 0 there is no list.	خفض هذا الرقم ينسى أقدم الملفات. عند 0 لا توجد قائمة.
+	Search a folder	البحث في مجلد
+	Search a folder…	البحث في مجلد…
+	Searching a folder needs the desktop app	البحث في مجلد يتطلب تطبيق سطح المكتب
+	Show the current page number over the document	إظهار رقم الصفحة الحالية فوق المستند
+	Show or hide the Tools panel	إظهار لوحة الأدوات أو إخفاؤها
+	Show or hide the side panel	إظهار اللوحة الجانبية أو إخفاؤها
+	Listing the folder…	جارٍ سرد المجلد…
+	Loading {name}…	جارٍ تحميل {name}…
+	Load to edit	تحميل للتحرير
+	Secured	مؤمَّن
+	Reading file {n} of {total}: {name}	قراءة الملف {n} من {total}: {name}
+	Not searched: {n}	لم يُبحث: {n}
+	Pages that couldn't be read: {n}	صفحات تعذرت قراءتها: {n}
+	Couldn't be read: {reason}	تعذرت القراءة: {reason}
+	Larger than 512 MiB	أكبر من 512 ميغابايت
+	A link or special file, which isn't followed	رابط أو ملف خاص، لا يُتبع
+	Matches: {matches}. Files with matches: {files}. PDFs read to the end: {searched} of {found}.	التطابقات: {matches}. ملفات فيها تطابقات: {files}. ملفات PDF قُرئت حتى النهاية: {searched} من {found}.
