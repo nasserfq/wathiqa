@@ -250,7 +250,13 @@ fn english_label(command: &CommandRef) -> Option<String> {
     FILL.iter().find(|(id, _)| *id == command.id).map(|(_, label)| (*label).to_owned())
 }
 
+/// The English label behind a row or title, for the mnemonic the bar shows after a label with no
+/// ASCII letter ("文件(F)"). Arabic menus show none: "ملف(F)" reads badly from the right, and
+/// Arabic menus are reached by pointer or by the menu search instead.
 fn english(labeled: Labeled<'_>) -> Option<String> {
+    if crate::i18n::current().rtl() {
+        return None;
+    }
     match labeled {
         Labeled::Command(command) => english_label(command),
         Labeled::Title(shown) => TITLES.iter().find(|t| tl!(t) == shown).map(|t| (*t).to_owned()),
@@ -682,6 +688,16 @@ mod tests {
         for label in ["Menu", "Scroll menu up", "Scroll menu down"] {
             assert_eq!(translate(label), label, "plain ASCII reserved labels need no substitution");
         }
+    }
+
+    #[test]
+    fn arabic_menu_titles_carry_no_latin_mnemonic() {
+        let Some(ar) = crate::i18n::Lang::from_code("ar") else { return }; // No Arabic catalog built in.
+        crate::i18n::set_current(ar);
+        let arabic = english(Labeled::Title(tl!("File")));
+        crate::i18n::set_current(crate::i18n::Lang::EN);
+        assert_eq!(arabic, None, "no \"ملف(F)\" in an Arabic menu bar");
+        assert_eq!(english(Labeled::Title("File")).as_deref(), Some("File"));
     }
 
     #[test]
