@@ -385,6 +385,7 @@ fn font_definitions_for_platform(prefer_hans: bool, platform: FontPolicyPlatform
     // Arabic-script faces (file names, document titles), Telugu faces (the Telugu interface,
     // file names), Hebrew faces (file names, text being edited), Thai faces and Devanagari faces
     // (the Hindi interface) after the CJK ones; the ranges don't overlap.
+    let arabic: Vec<String> = pdfcraft_fonts::ui_arabic_fonts().iter().map(|f| f.name()).collect();
     for face in pdfcraft_fonts::ui_arabic_fonts()
         .into_iter()
         .chain(pdfcraft_fonts::ui_telugu_fonts())
@@ -395,6 +396,13 @@ fn font_definitions_for_platform(prefer_hans: bool, platform: FontPolicyPlatform
         let name = face.name();
         if !fonts.font_data.contains_key(&name) {
             add(&mut fonts, &name, face.bytes);
+        }
+        if arabic.contains(&name)
+            && let Some(data) = fonts.font_data.get_mut(&name)
+        {
+            // وثيقة's interface is Arabic: at Inter's size, Noto Sans Arabic reads small beside
+            // it, so it is drawn larger (the same scale كلمة and عرض use).
+            Arc::make_mut(data).tweak.scale = ARABIC_UI_SCALE;
         }
         for family in [FontFamily::Proportional, FontFamily::Monospace] {
             let stack = fonts.families.entry(family).or_default();
@@ -411,6 +419,9 @@ fn font_definitions_for_platform(prefer_hans: bool, platform: FontPolicyPlatform
     }
     fonts
 }
+
+/// How much larger the Arabic interface face is drawn than its own size.
+pub const ARABIC_UI_SCALE: f32 = 1.15;
 
 pub fn regular(size: f32) -> FontId {
     FontId::proportional(size)

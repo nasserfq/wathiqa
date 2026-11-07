@@ -301,3 +301,12 @@ fn text_is_readable_on_every_surface() {
         }
     }
 }
+
+/// The Arabic interface face is drawn larger, so Arabic labels read as clearly as Inter's.
+#[test]
+fn arabic_interface_faces_are_scaled_up() {
+    let fonts = font_definitions();
+    for face in pdfcraft_fonts::ui_arabic_fonts() {
+        assert_eq!(fonts.font_data[&face.name()].tweak.scale, ARABIC_UI_SCALE, "{}", face.name());
+    }
+}

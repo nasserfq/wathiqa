@@ -599,12 +599,15 @@ mod tests {
         assert!(pdf.contains("<key>CFBundleTypeIconFile</key>"), "declares document icon file for Finder");
     }
 
-    // The bundle id must match the app id the binary uses; renames change both (#174).
+    // وثيقة's macOS bundle has its own id, so it never shares settings or file associations with
+    // an installed PdfCraft. The binary's APP_ID is the Linux/Windows window class, which must stay
+    // the id of the Linux desktop entry (StartupWMClass) that packaging installs; macOS ignores it.
     #[test]
     fn macos_bundle_id_matches_app_id() {
-        assert!(read("packaging/macos/Info.plist.in").contains("<string>ai.storyteller.pdfcraft</string>"), "bundle id");
+        assert!(read("packaging/macos/Info.plist.in").contains("<string>ai.storyteller.wathiqa</string>"), "bundle id");
         let main = read("apps/pdfcraft/src/main.rs");
-        assert!(main.contains(r#"const APP_ID: &str = "ai.storyteller.pdfcraft""#), "APP_ID drifted from the bundle id");
+        assert!(main.contains(r#"const APP_ID: &str = "ai.storyteller.pdfcraft""#), "APP_ID drifted from the Linux desktop entry");
+        assert!(read("packaging/linux/ai.storyteller.pdfcraft.desktop").contains("StartupWMClass=ai.storyteller.pdfcraft"), "window class");
     }
 
     // Committed file with `<!-- -->` comments stripped, so a commented-out claim cannot pass.
