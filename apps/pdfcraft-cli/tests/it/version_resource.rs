@@ -1,5 +1,5 @@
 //! `pdfcraft-cli.exe` carries a Windows version resource (`build.rs`), so Explorer, PowerShell's
-//! `VersionInfo` and inventory tools see its version and publisher, as they do for `pdfcraft.exe`.
+//! `VersionInfo` and inventory tools see its version and publisher, as they do for the app (`Wathiqa.exe`).
 
 #![cfg(windows)]
 
@@ -27,28 +27,35 @@ fn string_value(resource: &[u8], key: &str) -> Option<String> {
     String::from_utf16(&units).ok()
 }
 
+/// The release version (`WATHIQA_VERSION`, as the build script reads it), else the crate version.
+const VERSION: &str = match option_env!("WATHIQA_VERSION") {
+    Some(v) => v,
+    None => env!("CARGO_PKG_VERSION"),
+};
+
 #[test]
 fn the_exe_has_version_info_with_the_package_version() {
     let exe = std::fs::read(env!("CARGO_BIN_EXE_pdfcraft-cli")).unwrap();
     let start = find(&exe, &utf16("VS_VERSION_INFO")).expect("no version resource");
     let resource = &exe[start..];
     for (key, value) in [
-        ("ProductName", "PdfCraft"),
-        ("FileDescription", "PdfCraft command-line tool"),
-        ("LegalCopyright", "Copyright (c) the PdfCraft contributors. MIT OR Apache-2.0."),
-        ("OriginalFilename", "pdfcraft-cli.exe"),
-        ("InternalName", "pdfcraft-cli"),
-        ("FileVersion", env!("CARGO_PKG_VERSION")),
-        ("ProductVersion", env!("CARGO_PKG_VERSION")),
+        ("ProductName", "وثيقة (Wathiqa)"),
+        ("FileDescription", "وثيقة command-line tool and MCP server"),
+        ("CompanyName", "Nasser Alqahtani"),
+        ("LegalCopyright", "Copyright (c) Nasser Alqahtani. Based on PdfCraft, copyright (c) the PdfCraft contributors. MIT OR Apache-2.0."),
+        ("OriginalFilename", "wathiqa-cli.exe"),
+        ("InternalName", "wathiqa-cli"),
+        ("FileVersion", VERSION),
+        ("ProductVersion", VERSION),
     ] {
         assert_eq!(string_value(resource, key).as_deref(), Some(value), "{key}");
     }
     // VS_FIXEDFILEINFO: signature, struct version, then file and product versions as
     // major << 16 | minor and patch << 16 | build.
     let fixed = start + find(resource, &0xFEEF_04BDu32.to_le_bytes()).expect("no VS_FIXEDFILEINFO");
-    let number = |s: &str| -> u32 { s.parse().unwrap() };
-    let ms = (number(env!("CARGO_PKG_VERSION_MAJOR")) << 16) | number(env!("CARGO_PKG_VERSION_MINOR"));
-    let ls = number(env!("CARGO_PKG_VERSION_PATCH")) << 16;
+    let parts: Vec<u32> = VERSION.split('.').map(|s| s.parse().unwrap()).collect();
+    let ms = (parts[0] << 16) | parts[1];
+    let ls = parts[2] << 16;
     assert_eq!([dword(&exe, fixed + 8), dword(&exe, fixed + 12)], [ms, ls], "file version");
     assert_eq!([dword(&exe, fixed + 16), dword(&exe, fixed + 20)], [ms, ls], "product version");
 }
