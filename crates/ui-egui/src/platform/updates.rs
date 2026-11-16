@@ -46,8 +46,9 @@ impl Default for Updates {
 impl PdfCraftApp {
     /// Whether the app asks for a newer release on its first frame (off until the desktop app turns it on).
     #[cfg(not(target_arch = "wasm32"))]
+    /// A store copy never does: its store updates it (`craft_update::store`).
     pub fn set_startup_update_check(&mut self, on: bool) {
-        self.updates.startup_check = on;
+        self.updates.startup_check = on && !craft_update::store::installed();
     }
 
     /// Replaces the network with `source` (tests).
@@ -58,6 +59,12 @@ impl PdfCraftApp {
 
     /// Help ▸ Check for updates: ask for the latest release and show the outcome.
     pub fn check_for_updates(&mut self) {
+        // A store copy opens the store's updates page instead.
+        #[cfg(not(target_arch = "wasm32"))]
+        if craft_update::store::installed() {
+            self.open_url(craft_update::store::updates_url());
+            return;
+        }
         #[cfg(not(target_arch = "wasm32"))]
         {
             self.updates.open = true;
